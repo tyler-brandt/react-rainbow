@@ -6,6 +6,7 @@ import InternalOverlay from '../InternalOverlay';
 import MenuContent from './menuContent';
 import { StyledContainer, StyledDropdown } from './styled';
 import { resolvePosition } from './utils';
+import useWindowScrolling from '../../libs/hooks/useWindowScrolling';
 
 const PrimitiveMenu = React.forwardRef((props, ref) => {
     const {
@@ -36,6 +37,7 @@ const PrimitiveMenu = React.forwardRef((props, ref) => {
         isOpen,
     );
     useWindowResize(() => closeMenu(), isOpen);
+    useWindowScrolling(() => closeMenu(), isOpen);
 
     useImperativeHandle(ref, () => ({
         focus: () => {
